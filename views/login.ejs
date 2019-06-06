@@ -1,0 +1,26 @@
+<div class="login">
+  <h3>LOG IN</h3>
+  <% if(!isLogin){%>
+    <form action="/" id = "login_form" method = "post">
+      <fieldset>
+        <input placeholder = "ID" name = "username" type = "text", autofocus = "" require = "">
+        <input placeholder = "password" name = "password" type = "password" value = "" require = "">
+        <input type = "sumbit" value = "Login" class = "btnLogin">
+        <a href="/api/login/auth/kakao">
+          <div class = "kakaoLogin">
+            카카오 계정으로 로그인
+          </div>
+        </a>
+      </fieldset>
+    </form>
+  <%}else{%>
+    <div class = "memberInfo"}>
+      <p><a href="/logout" onclick="return confirm('로그아웃??')">LOGOUT</a></p>
+    </div>
+  <%}%>
+</div>
+
+<script type = "text/javaScript">
+  (function()){
+    $(document.)
+  }

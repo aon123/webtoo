@@ -1,0 +1,110 @@
+
+function main() {
+
+
+  (function ($) {
+  	"use strict";
+  	$('.column100').on('mouseover',function(){
+  		var table1 = $(this).parent().parent().parent();
+  		var table2 = $(this).parent().parent();
+  		var verTable = $(table1).data('vertable')+"";
+  		var column = $(this).data('column') + "";
+
+  		$(table2).find("."+column).addClass('hov-column-'+ verTable);
+  		$(table1).find(".row100.head ."+column).addClass('hov-column-head-'+ verTable);
+  	});
+
+  	$('.column100').on('mouseout',function(){
+  		var table1 = $(this).parent().parent().parent();
+  		var table2 = $(this).parent().parent();
+  		var verTable = $(table1).data('vertable')+"";
+  		var column = $(this).data('column') + "";
+
+  		$(table2).find("."+column).removeClass('hov-column-'+ verTable);
+  		$(table1).find(".row100.head ."+column).removeClass('hov-column-head-'+ verTable);
+  	});
+
+
+  })(jQuery);
+
+
+(function () {
+   'use strict';
+
+  	$('a.page-scroll').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top - 40
+            }, 900);
+            return false;
+          }
+        }
+      });
+
+
+    // Show Menu on Book
+    $(window).bind('scroll', function() {
+        var navHeight = $(window).height() - 500;
+        if ($(window).scrollTop() > navHeight) {
+            $('.navbar-default').addClass('on');
+        } else {
+            $('.navbar-default').removeClass('on');
+        }
+    });
+
+    $('body').scrollspy({
+        target: '.navbar-default',
+        offset: 80
+    });
+
+	// Hide nav on click
+  $(".navbar-nav li a").click(function (event) {
+    // check if window is small enough so dropdown is created
+    var toggle = $(".navbar-toggle").is(":visible");
+    if (toggle) {
+      $(".navbar-collapse").collapse('hide');
+    }
+  });
+
+  	// Portfolio isotope filter
+    $(window).load(function() {
+        var $container = $('.portfolio-items');
+        $container.isotope({
+            filter: '*',
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false
+            }
+        });
+        $('.cat a').click(function() {
+            $('.cat .active').removeClass('active');
+            $(this).addClass('active');
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
+            return false;
+        });
+
+    });
+
+    // Nivo Lightbox
+    $('.portfolio-item a').nivoLightbox({
+            effect: 'slideDown',
+            keyboardNav: true,
+        });
+
+}());
+
+
+}
+main();

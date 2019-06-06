@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <!-- Bootstrap -->
+      <link rel="stylesheet" type="text/css"  href="/stylesheets/bootstrap.css">
+      <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome.css">
+
+      <!-- Stylesheet
+          ================================================== -->
+      <link rel="stylesheet" type="text/css"  href="/stylesheets/style.css">
+      <link rel="stylesheet" type="text/css" href="/stylesheets/nivo-lightbox/nivo-lightbox.css">
+      <link rel="stylesheet" type="text/css" href="/stylesheets/nivo-lightbox/default.css">
+      <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Gugi&amp;subset=korean" rel="stylesheet">
+      <script src="http://developers.kakao.com/sdk/js/kakao.min.js">
+      function daum_click()
+      {
+          if(Daum_webtoons.display == "none")
+            Daum_webtoons.display == "block";
+            if(Daum_webtoons.display = "block")
+            Daum_webtoons.display == "none";
+      }
+      function naver_click()
+      {
+          if(Naver_webtoons.display == "none")
+              Naver_webtoons.display == "block";
+          if(Naver_webtoons.display = "block")
+              Naver_webtoons.display == "none";
+      }
+        </script>
+  </head>
+
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <!-- Navigation ==========================================-->
+  <nav id="menu" class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+              <a class="navbar-brand page-scroll" href="#page-top" style="font-family:Gugi">니툰내툰</a> </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#about" class="page-scroll">About</a></li>
+                  <li><a href="#portfolio" class="page-scroll">Webtoons</a></li>
+                  <li><a href="/auth/login/kakao" class="page-scroll">kakaoLogin</a></li>
+                  <li><a href="/auth/login/naver" class="page-scroll">naverLogin</a></li>
+                  <li><a href="/auth/login/google" class="page-scroll">googleLogin</a></li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+  </nav>
+  <!-- Header -->
+  <header id="header">
+      <div class="intro">
+          <div class="overlay">
+              <div class="container">
+                  <div class="row">
+                      <div class="intro-text">
+
+                          <h1 style="font-family:Gugi">니툰내툰</h1>
+                          <p> NAVER / DAUM / WEBTOONS </p>
+                          <a href="#about" class="btn btn-custom btn-lg page-scroll">All the Webtoons</a> </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+
+  <!-- About Section -->
+  <div id="about">
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12 col-md-6 ">
+                  <div class="about-img"><img src="images/toon.png" class="img-responsive" alt=""></div>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                  <div class="about-text">
+                      <h2>Our Term-Project</h2>
+                      <hr>
+                      <!--수정해주세욤!-->
+                      <p>마더 프로젝트 니툰내툰(YTMT)를 개선하는 프로젝트입니다. 네이버 웹툰 뿐만 아니라 다음 웹툰도 담을 수 있으며, 타인이 담은 웹툰도 확인할 수 있습니다.</p>
+                      <h3>Programmers</h3>
+                      <p>2013100924 이현종, 2018102151 Abdullaev Akhidjon</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Portfolio Section -->
+  <div id="portfolio">
+      <div class="section-title text-center center">
+          <div class="overlay">
+              <h2>Gallery</h2>
+              <hr>
+              <p>니툰내툰에서 제공하는 웹툰 리스트입니다</p>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="categories">
+                  <ul class="cat">
+
+  <font size = 30>
+      다음 웹툰
+  </font>
+
+  <a onclick="Daum_webtoons.style.display=(Daum_webtoons.style.display=='none')?'block':'none';" href="javascript:void(0)">
+      <img src ='/images/daumicon.png' width="83" height="90" onclick="daum_click" />
+  </a>
+  <div style="display:none" id="Daum_webtoons">
+      <table>
+          <%
+          var current = "";
+                  for(webtoon in list){
+
+          if(current!=list[webtoon].week && list[webtoon].site == 'daum'){
+          if(current!=""){
+          %>
+              </tr>
+          <% } %>
+          <tr>
+              <th><%= list[webtoon].week %></th>
+              <% } %>
+              <%
+              if(list[webtoon].site == 'daum')
+              {
+              %>
+                  <td>
+                      <a href="<%= list[webtoon].webtoon_link %>">
+                          <img alt="img" width="83" height="90" src="<%= list[webtoon].thum_link %>"/>
+                      </a>
+                      <%= list[webtoon].name %>
+                  </td>
+              <%
+              }
+              %>
+
+              <%
+              if(current!=list[webtoon].week) {
+                  current = list[webtoon].week;
+              %>
+
+              <%
+              }
+              }
+              %>
+          </tr>
+      </table>
+      <!--</br>-->
+  </div>
+  <!--<br>-->
+
+  <font size = 30>
+      네이버 웹툰
+  </font>
+  <a onclick="Naver_webtoons.style.display=(Naver_webtoons.style.display=='none')?'block':'none';" href="javascript:void(0)">
+      <img src ='/images/navericon.png' width="83" height="90"/>
+  </a>
+  <div id="Naver_webtoons" style = "display:none">
+
+      <table>
+          <%
+          var current = "";
+                  for(webtoon in list){
+
+          if(current!=list[webtoon].week && list[webtoon].site == 'naver'){
+          if(current!=""){
+          %>
+              </tr>
+          <% } %>
+          <tr>
+              <th><%= list[webtoon].week %></th>
+              <% } %>
+              <%
+              if(list[webtoon].site == 'naver')
+              {
+              %>
+                  <td>
+                      <a href="<%= list[webtoon].webtoon_link %>">
+                          <img alt="img" width="83" height="90" src="<%= list[webtoon].thum_link %>"/>
+                      </a>
+                      <%= list[webtoon].name %>
+                  </td>
+              <%
+              }
+              %>
+
+              <%
+              if(current!=list[webtoon].week) {
+                  current = list[webtoon].week;
+              %>
+
+              <%
+              }
+              }
+              %>
+          </tr>
+      </table>
+      </br>
+
+  </div>
+
+
+  <font size = 30>
+    투믹스 웹툰
+</font>
+<a onclick="Naver_webtoons.style.display=(Naver_webtoons.style.display=='none')?'block':'none';" href="javascript:void(0)">
+    <img src ='https://is4-ssl.mzstatic.com/image/thumb/Purple128/v4/d9/c7/99/d9c79934-4e9a-4926-fa53-b4863bae52b4/source/512x512bb.jpg' width="83" height="90"/>
+</a>
+<div id="toomiks" style = "display:none">
+
+    <table>
+        <%
+        var current = "";
+                for(webtoon in list){
+
+        if(current!=list[webtoon].week && list[webtoon].site == 'toomiks'){
+        if(current!=""){
+        %>
+            </tr>
+        <% } %>
+        <tr>
+            <th><%= list[webtoon].week %></th>
+            <% } %>
+            <%
+            if(list[webtoon].site == 'toomiks')
+            {
+            %>
+                <td>
+                    <a href="<%= list[webtoon].webtoon_link %>">
+                        <img alt="img" width="83" height="90" src="<%= list[webtoon].thum_link %>"/>
+                    </a>
+                    <%= list[webtoon].name %>
+                </td>
+            <%
+            }
+            %>
+
+            <%
+            if(current!=list[webtoon].week) {
+                current = list[webtoon].week;
+            %>
+
+            <%
+            }
+            }
+            %>
+        </tr>
+    </table>
+    </br>
+
+</div>
+  </body>
+
+</html>

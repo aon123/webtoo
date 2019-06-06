@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>니툰</title>
+    <link rel='stylesheet' href='/stylesheets/style2.css' />
+    <<!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css"  href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome.css">
+
+    <!-- Stylesheet
+        ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/nivo-lightbox/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gugi&amp;subset=korean" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .toon_name,.toon_thumbnail{
+            width:10%;
+        }
+
+        td{
+            vertical-align: middle;
+            border-bottom: 1px solid #bcbcbc;
+            border-left: 1px solid #bcbcbc;
+            border-right: 1px solid #bcbcbc;
+            margin:0;
+            Text-align:center;
+        }
+        table{
+            border-collapse:collapse;
+            border: 2px solid #474747;
+        }
+        th{
+            border-bottom:2px solid #474747;
+        }
+    </style>
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<!-- Navigation
+    ==========================================-->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand page-scroll" href="#page-top" style="font-family:Gugi">니툰</a> </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#otherlist" class="page-scroll">OtherList</a></li>
+                <li><a href="/mytoons" class="page-scroll">MyList</a></li>
+                <li><a href="/auth/logout/kakao" class="page-scroll">Logout</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</nav>
+<div id="otherlist">
+    <div class="section-title text-center center">
+        <div class="overlay">
+            <h2>니툰</h2>
+            <hr>
+            <p>다른 사용자들의 내툰 리스트입니다</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="categories">
+
+<table>
+    <tr>
+        <th>KakaoID</th>
+        <th>썸네일</th>
+        <th>웹툰명</th>
+        <th>요일</th>
+        <th>사이트</th>
+        <th>바로가기</th>
+    </tr>
+    <!--로그인한 회원이 내툰에 웹툰이 없을시-->
+    <%if (yourtoons.length==0){
+    %>
+        <th>니툰리스트에 웹툰이 없습니다! </th>
+    <%}%>
+    <% for(i=0;i<yourtoons.length; i++){
+    %><tr>
+        <td class="toon_name"><%= yourtoons[i].id %></td>
+        <td class="toon_thumbnail"><image src="<%= yourtoons[i].thum_link%>"/></td>
+        <td class="toon_name"><%= yourtoons[i].name %></td>
+        <td class="week"><%= yourtoons[i].week.toLowerCase() %></td>
+        <td class="site"><%= yourtoons[i].site %></td>
+        <td class="webtoon_link"><a href="<%=yourtoons[i].webtoon_link%>">바로가기</a></td>
+
+        </td>
+
+    </tr>
+    <% } %>
+
+</table>
+
+</br>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
